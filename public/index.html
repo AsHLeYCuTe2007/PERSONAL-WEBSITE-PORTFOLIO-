@@ -26,9 +26,11 @@
         .hero { position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; }
         .cover-area {
             width: 100%; height: 180px; 
-            background: linear-gradient(to bottom, transparent, var(--bg)), url('https://i.gifer.com/CnZW.gif');
-            background-size: cover; background-position: center;
+            background: linear-gradient(to bottom, transparent, var(--bg));
+            background-size: cover; 
+            background-position: center;
             border-bottom: 2px solid var(--accent);
+            transition: background 0.5s ease-in-out;
         }
         .profile-container { margin-top: -60px; text-align: center; z-index: 10; }
         .profile-hex {
@@ -69,7 +71,6 @@
             box-shadow: 0 0 15px var(--accent);
             transform: translateY(-3px);
         }
-        .stack-item:active i, .stack-item:active span { color: #fff; }
         .stack-item i { font-size: 1.5rem; color: var(--accent); margin-bottom: 8px; display: block; }
         .stack-item span { font-size: 0.7rem; font-weight: 700; color: #ccc; }
         .mission-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; }
@@ -89,44 +90,19 @@
             display: flex; flex-direction: column;
             height: 450px; width: 100%; overflow: hidden;
         }
-        .chat-messages {
-            flex: 1; padding: 20px; overflow-y: auto;
-            display: flex; flex-direction: column; gap: 12px;
-        }
-        .bubble {
-            max-width: 80%; padding: 10px 15px; border-radius: 20px;
-            font-size: 0.88rem; line-height: 1.4; word-wrap: break-word;
-        }
+        .chat-messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+        .bubble { max-width: 80%; padding: 10px 15px; border-radius: 20px; font-size: 0.88rem; line-height: 1.4; word-wrap: break-word; }
         .ai-bubble { align-self: flex-start; background: #242526; color: #fff; border-bottom-left-radius: 4px; }
         .user-bubble { align-self: flex-end; background: #0084ff; color: #fff; border-bottom-right-radius: 4px; }
-        .chat-bar {
-            padding: 12px 25px;
-            background: rgba(0, 0, 0, 0.3);
-            display: flex; align-items: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .input-wrapper {
-            flex: 1; 
-            background: #3a3b3c; 
-            border-radius: 25px; 
-            padding: 8px 20px;
-            display: flex;
-            align-items: center;
-        }
-        .chat-bar input {
-            width: 100%;
-            background: transparent; 
-            border: none;
-            color: #fff; 
-            outline: none; 
-            font-size: 0.95rem;
-        }
+        .chat-bar { padding: 12px 25px; background: rgba(0, 0, 0, 0.3); display: flex; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+        .input-wrapper { flex: 1; background: #3a3b3c; border-radius: 25px; padding: 8px 20px; display: flex; align-items: center; }
+        .chat-bar input { width: 100%; background: transparent; border: none; color: #fff; outline: none; font-size: 0.95rem; }
     </style>
 </head>
-<body onclick="playMusic()">
+<body>
     <audio id="bgMusic" loop><source src="kurapika.mp3" type="audio/mpeg"></audio>
     <header class="hero">
-        <div class="cover-area"></div>
+        <div class="cover-area" id="randomCover"></div>
         <div class="profile-container">
             <div class="profile-hex"><img src="https://i.gifer.com/94k1.gif" alt="Kurapika"></div>
             <div class="name-wrapper">
@@ -174,11 +150,24 @@
         </div>
     </section>
     <script>
+        const covers = [
+            'https://i.gifer.com/CnZd.gif',
+            'https://i.gifer.com/CnZY.gif',
+            'https://i.gifer.com/94k3.gif'
+        ];
+        function setRandomCover() {
+            const coverEl = document.getElementById('randomCover');
+            const randomImg = covers[Math.floor(Math.random() * covers.length)];
+            coverEl.style.backgroundImage = `linear-gradient(to bottom, transparent, var(--bg)), url('${randomImg}')`;
+        }
+        setRandomCover();
         const music = document.getElementById('bgMusic');
         let isStarted = false;
-        function playMusic() {
-            if (!isStarted) { music.play().then(() => isStarted = true).catch(e => {}); }
-        }
+        document.body.addEventListener('click', () => {
+            if (!isStarted) {
+                music.play().then(() => isStarted = true).catch(e => {});
+            }
+        }, { once: false });
         async function sendMessage() {
             const input = document.getElementById('userInput');
             const box = document.getElementById('chatBox');
