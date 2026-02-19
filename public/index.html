@@ -15,43 +15,115 @@
             --glass: rgba(255, 255, 255, 0.02);
             --glass-border: rgba(255, 204, 0, 0.15);
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: var(--bg); color: #fff; overflow-x: hidden; padding-bottom: 50px; }
+
         .hero { position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; }
         .cover-area {
             width: 100%; height: 160px; 
             background: linear-gradient(to bottom, transparent, var(--bg)), url('https://i.gifer.com/94k3.gif');
-            background-size: cover; background-position: center; border-bottom: 2px solid var(--accent);
+            background-size: cover; background-position: center;
+            border-bottom: 2px solid var(--accent);
         }
         .profile-container { margin-top: -50px; text-align: center; z-index: 10; margin-bottom: 30px; }
         .profile-hex {
             width: 100px; height: 100px; padding: 3px; background: var(--bg);
-            border-radius: 50%; display: inline-block; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); border: 2px solid var(--gold);
+            border-radius: 50%; display: inline-block;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); border: 2px solid var(--gold);
         }
         .profile-hex img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .name-wrapper { margin-top: 10px; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .wave-text { display: flex; font-family: 'Syncopate', sans-serif; font-weight: 700; font-size: 1.3rem; letter-spacing: 4px; }
-        .wave-text span { display: inline-block; animation: waveAnim 2s infinite ease-in-out; animation-delay: calc(0.1s * var(--i)); }
-        @keyframes waveAnim { 0%, 40%, 100% { transform: translateY(0); } 20% { transform: translateY(-10px); color: var(--accent); } }
-        .verified-badge { color: var(--blue); font-size: 1.1rem; filter: drop-shadow(0 0 5px rgba(0, 149, 246, 0.5)); }
+        
+        .name-wrapper { 
+            margin-top: 10px; 
+            color: var(--gold); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .wave-text { 
+            display: flex; 
+            font-family: 'Syncopate', sans-serif; 
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: 4px;
+        }
+
+        .wave-text span {
+            display: inline-block;
+            animation: waveAnim 2s infinite ease-in-out;
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        @keyframes waveAnim {
+            0%, 40%, 100% { transform: translateY(0); }
+            20% { transform: translateY(-10px); color: var(--accent); text-shadow: 0 0 10px var(--accent); }
+        }
+
+        .verified-badge {
+            color: var(--blue);
+            font-size: 1.1rem;
+            margin-top: -2px;
+            filter: drop-shadow(0 0 5px rgba(0, 149, 246, 0.5));
+        }
+
         section { padding: 0 10%; max-width: 600px; margin: 0 auto; width: 100%; }
-        .section-header { font-family: 'Syncopate', sans-serif; font-size: 0.7rem; font-weight: 700; color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; }
+        
+        .section-header {
+            font-family: 'Syncopate', sans-serif; font-size: 0.7rem; font-weight: 700;
+            color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+            text-transform: uppercase;
+        }
         .section-header::after { content: ""; height: 1px; flex-grow: 1; background: linear-gradient(to right, var(--gold), transparent); opacity: 0.2; }
-        .card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 12px; padding: 25px; margin-bottom: 20px; }
+
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
         .form-group { margin-bottom: 15px; }
         .form-label { font-family: 'Syncopate', sans-serif; font-size: 0.55rem; font-weight: 700; color: #888; display: block; margin-bottom: 8px; }
-        .form-input { width: 100%; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; color: #fff; font-size: 0.85rem; outline: none; }
-        .btn-execute { width: 100%; padding: 15px; border-radius: 8px; border: 1px solid var(--gold); background: transparent; color: var(--gold); font-family: 'Syncopate', sans-serif; font-size: 0.7rem; font-weight: 700; cursor: pointer; text-transform: uppercase; }
+        .form-input {
+            width: 100%; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255,255,255,0.05);
+            padding: 12px; border-radius: 8px; color: #fff; font-size: 0.85rem; outline: none;
+            transition: 0.3s;
+        }
+        .form-input:focus { border-color: var(--accent); background: rgba(255, 0, 0, 0.05); }
+
+        .btn-execute {
+            width: 100%; padding: 15px; border-radius: 8px; border: 1px solid var(--gold);
+            background: transparent; color: var(--gold); font-family: 'Syncopate', sans-serif;
+            font-size: 0.7rem; font-weight: 700; cursor: pointer; transition: 0.3s;
+            margin-top: 10px; text-transform: uppercase;
+        }
         .btn-execute:hover:not(:disabled) { background: var(--gold); color: #000; box-shadow: 0 0 20px rgba(255, 204, 0, 0.3); }
-        .process-item { background: rgba(255, 0, 0, 0.05); border: 1px solid rgba(255, 0, 0, 0.2); padding: 18px; border-radius: 12px; margin-top: 15px; animation: glowPulse 2s infinite ease-in-out; }
-        @keyframes glowPulse { 0%, 100% { border-color: rgba(255, 0, 0, 0.2); } 50% { border-color: rgba(255, 0, 0, 0.5); } }
+
+        .process-item {
+            background: rgba(255, 0, 0, 0.05);
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            padding: 18px; border-radius: 12px; margin-top: 15px;
+            animation: glowPulse 2s infinite ease-in-out;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { border-color: rgba(255, 0, 0, 0.2); }
+            50% { border-color: rgba(255, 0, 0, 0.5); }
+        }
+
         .prog-info { display: flex; justify-content: space-between; font-family: 'Syncopate', sans-serif; font-size: 0.6rem; font-weight: 700; margin-bottom: 12px; }
         .progress-container { height: 6px; background: rgba(0, 0, 0, 0.5); border-radius: 10px; overflow: hidden; }
-        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), #ff4d4d); box-shadow: 0 0 15px var(--accent); width: 0%; transition: width 0.3s; }
+        .progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), #ff4d4d); box-shadow: 0 0 15px var(--accent); width: 0%; transition: width 0.1s linear; }
+
         #liveClock { font-family: 'Syncopate', sans-serif; font-size: 0.6rem; font-weight: 700; color: var(--gold); opacity: 0.5; margin-top: 20px; text-align: center; }
     </style>
 </head>
 <body>
+
     <header class="hero">
         <div class="cover-area"></div>
         <div class="profile-container">
@@ -65,70 +137,101 @@
             <p style="font-size: 0.6rem; color: var(--accent); letter-spacing: 2px; margin-top: 5px; font-family: 'Syncopate'; font-weight: 700;">GØDZ-MØDZ - UGK</p>
         </div>
     </header>
+
     <section>
         <div class="section-header">SHARE_CENTER</div>
         <div class="card">
             <form id="shareForm">
-                <div class="form-group"><label class="form-label">ACCESS_TOKEN</label><input type="text" id="tk" class="form-input" required></div>
-                <div class="form-group"><label class="form-label">POST_URL</label><input type="text" id="url" class="form-input" required></div>
+                <div class="form-group">
+                    <label class="form-label">SYSTEM_ACCESS_TOKEN</label>
+                    <input type="text" id="tk" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">TARGET_URL</label>
+                    <input type="text" id="url" class="form-input" required>
+                </div>
                 <div style="display: flex; gap: 10px;">
-                    <div style="flex: 1;"><label class="form-label">LIMIT</label><input type="number" id="am" class="form-input" required></div>
-                    <div style="flex: 1;"><label class="form-label">DELAY (MS)</label><input type="number" id="id" class="form-input" value="1000" required></div>
+                    <div style="flex: 1;">
+                        <label class="form-label">LIMIT</label>
+                        <input type="number" id="am" class="form-input" required>
+                    </div>
+                    <div style="flex: 1;">
+                        <label class="form-label">DELAY (MS)</label>
+                        <input type="number" id="id" class="form-input" value="1000" required>
+                    </div>
                 </div>
                 <button type="submit" class="btn-execute" id="sb">START 10X BATCH</button>
             </form>
         </div>
+
         <div class="section-header">ACTIVE_MONITOR</div>
-        <div id="pr"><p style="text-align: center; font-size: 0.6rem; color: #444; font-family: 'Syncopate';">NO_ACTIVE_SESSIONS</p></div>
+        <div id="pr">
+            <p style="text-align: center; font-size: 0.6rem; color: #444; font-family: 'Syncopate';">NO_ACTIVE_SESSIONS</p>
+        </div>
         <div id="liveClock">00:00:00 PM</div>
     </section>
+
+    <audio id="bgMusic" loop src="statue.mp3"></audio>
+
     <script>
         let isRunning = false;
         function updateClock() { document.getElementById('liveClock').innerText = new Date().toLocaleTimeString(); }
         setInterval(updateClock, 1000); updateClock();
 
+        document.body.addEventListener('click', () => {
+            const music = document.getElementById('bgMusic');
+            if(music.paused) music.play().catch(() => {});
+        }, { once: false });
+
+        const updateUI = (count, amount) => {
+            const monitor = document.getElementById('pr');
+            const percent = Math.min((count / amount) * 100, 100);
+            monitor.innerHTML = `
+                <div class="process-item">
+                    <div class="prog-info"><span style="color:var(--gold); font-family:'Syncopate'">TASK_NODE</span><span style="font-family:'Syncopate'">${count} / ${amount}</span></div>
+                    <div class="progress-container"><div class="progress-bar" style="width: ${percent}%"></div></div>
+                    <div style="font-size:0.5rem; color:var(--accent); margin-top:8px; font-family:'Syncopate'">STATUS: 10_SHARES_PER_CYCLE</div>
+                </div>`;
+        };
+
         document.getElementById('shareForm').onsubmit = async (e) => {
             e.preventDefault();
             if(isRunning) return;
             isRunning = true;
+            
             const btn = document.getElementById('sb');
             const token = document.getElementById('tk').value;
             const link = document.getElementById('url').value;
             const amount = parseInt(document.getElementById('am').value);
             const delay = parseInt(document.getElementById('id').value);
-            const monitor = document.getElementById('pr');
             
-            btn.disabled = true; btn.innerText = "RUNNING BATCH...";
+            btn.disabled = true; btn.innerText = "DEPLOYING TURBO...";
             let count = 0;
 
-            while(count < amount) {
-                const batchPromises = [];
-                const currentBatchSize = Math.min(10, amount - count);
-
-                for(let i = 0; i < currentBatchSize; i++) {
-                    batchPromises.push(
-                        fetch(`https://graph.facebook.com/me/feed?link=${encodeURIComponent(link)}&access_token=${token}`, { method: 'POST' })
-                        .then(res => res.json())
-                        .then(data => { if(data.id) count++; })
-                        .catch(() => {})
-                    );
-                }
-
-                await Promise.all(batchPromises);
+            const executeBatch = async () => {
+                const batchSize = 10;
+                const remaining = amount - count;
+                const currentBatch = Math.min(batchSize, remaining);
                 
-                const percent = Math.min((count / amount) * 100, 100);
-                monitor.innerHTML = `
-                    <div class="process-item">
-                        <div class="prog-info"><span style="color:var(--gold)">BATCH_NODE</span><span>${count} / ${amount}</span></div>
-                        <div class="progress-container"><div class="progress-bar" style="width: ${percent}%"></div></div>
-                        <div style="font-size:0.5rem; color:var(--accent); margin-top:8px; font-family:'Syncopate'">STATUS: 10X_SPEED_ACTIVE</div>
-                    </div>`;
+                const promises = Array.from({ length: currentBatch }, () => 
+                    fetch(`https://graph.facebook.com/me/feed?link=${encodeURIComponent(link)}&access_token=${token}`, { method: 'POST' })
+                    .then(res => res.json())
+                    .then(data => { if(data.id) count++; })
+                    .catch(() => {})
+                );
 
-                if(count < amount) await new Promise(r => setTimeout(r, delay));
-            }
+                await Promise.all(promises);
+                updateUI(count, amount);
 
-            btn.disabled = false; btn.innerText = "START 10X BATCH";
-            isRunning = false;
+                if (count < amount) {
+                    setTimeout(executeBatch, delay);
+                } else {
+                    btn.disabled = false; btn.innerText = "START 10X BATCH";
+                    isRunning = false;
+                }
+            };
+
+            executeBatch();
         };
     </script>
 </body>
