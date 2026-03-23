@@ -172,7 +172,7 @@
     </header>
 
     <section id="stack">
-        <div class="section-header">SKILL_SET</div>
+        <div class="section-header">SKILL SET</div>
         <div class="stack-grid">
             <div class="stack-item"><i class="fab fa-js"></i><span>JS</span></div>
             <div class="stack-item"><i class="fab fa-python"></i><span>PYTHON</span></div>
@@ -209,7 +209,7 @@
     </section>
 
     <section id="ai-section">
-        <div class="section-header">KURAPIKA_BOT • AI</div>
+        <div class="section-header">KURAPIKA BOT • GPT</div>
         <div class="chat-container">
             <div class="chat-messages" id="chatBox">
                 <div class="bubble ai-bubble">Kurapika Bot is online. Press Enter to send.</div>
@@ -245,7 +245,7 @@
             box.scrollTop = box.scrollHeight;
 
             try {
-                const res = await fetch(`https://smfahim.xyz/ai/gemini/v1?prompt=${encodeURIComponent(text)}`);
+                const res = await fetch(`https://urangkapolka.vercel.app/api/chatgpt4?prompt=${encodeURIComponent(text)}`);
                 const data = await res.json();
                 document.getElementById(aiId).innerText = data.answer || data.reply || data.response || "No response.";
             } catch (e) {
